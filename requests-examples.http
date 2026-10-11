@@ -1,0 +1,100 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:8000/api/v1
+
+# создание продукта
+POST {{baseUrl}}/products/
+Content-Type: application/json
+
+{
+  "title": "Огурцы",
+  "description": "Крупные пупырчатые"
+}
+
+###
+
+# получение продуктов
+GET {{baseUrl}}/products/
+Content-Type: application/json
+
+###
+
+# обновление продукта
+PATCH {{baseUrl}}/products/4/
+Content-Type: application/json
+
+{
+  "description": "Самые сочные и ароматные помидорки"
+}
+
+###
+
+# удаление продукта
+DELETE {{baseUrl}}/products/3/
+Content-Type: application/json
+
+###
+
+# поиск продуктов по названию и описанию
+GET {{baseUrl}}/products/?search=помидоры
+Content-Type: application/json
+
+###
+
+# создание склада
+POST {{baseUrl}}/stocks/
+Content-Type: application/json
+
+{
+  "address": "Москва, Химки, Овощебаза, строение 12",
+  "positions": [
+    {
+      "product": 4,
+      "quantity": 420,
+      "price": 110.50
+    },
+    {
+      "product": 5,
+      "quantity": 283,
+      "price": 150
+    },
+    {
+      "product": 6,
+      "quantity": 530,
+      "price": 60.20
+    }
+  ]
+}
+
+###
+
+# обновляем записи на складе
+PATCH {{baseUrl}}/stocks/3/
+Content-Type: application/json
+
+{
+  "positions": [
+    {
+      "product": 7,
+      "quantity": 623
+    }
+  ]
+}
+
+###
+
+# поиск складов, где есть определенный продукт
+GET {{baseUrl}}/stocks/?products=5
+Content-Type: application/json
+
+###
+
+# получение списка складов
+GET {{baseUrl}}/stocks/
+Content-Type: application/json
+
+###
+
+# поиск складов, где есть определенный продукт по его имени или содержанию
+GET {{baseUrl}}/stocks/?search=помидор&products=5
+Content-Type: application/json
